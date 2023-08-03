@@ -43,5 +43,31 @@
             </fieldset>
         </form>
     </div>
+    <script>
+        // 네이버 로그인 조건
+        /* 
+            1. 아이디 안적고 비밀번호 적은 후 로그인 버튼 클릭시 = 아이디 입력하세요
+            2. 아이디 적고 비밀번호 안적은 후 로그인 버튼 클릭시 = 비밀번호 입력하세요
+            3. 아아디, 비밀번호 모두 안적고 로그인 버튼 클릭시 = 아이디,비밀번호 입력하세요 메세지
+            4, 아이디, 비밀번호 모두 입력하고 로그인 버튼 클릭 시 = 로그인 성공
+        */
+        // 변수생성 (아이디,비밀번호,결과위치,로그인버튼)
+        const userId = document.querySelector('#user_id') //아이디
+        const userPw = document.querySelector('#user_pw') //비밀번호
+        const errorResult = document.querySelector('#error_result') //결과위치
+        const loginBtn = document.querySelector('#login_btn') //로그인버튼
+        console.log(userId, userPw, errorResult, loginBtn)
+        loginBtn.addEventListener('click',function(){
+            if(userId.value === '' && userPw.value === ''){ //3.
+                errorResult.innerHTML = '아이디, 비밀번호 입력하세요'
+            }else if(userPw.value === '' ){ //2.
+                errorResult.innerHTML = '비밀번호 입력하세요'
+            }else if(userId.value === ''){ //1.
+                errorResult.innerHTML = '아이디 입력하세요'
+            }else{ //4.
+                errorResult.innerHTML = '로그인 성공'
+            }
+        })
+    </script>
 </body>
 </html>
