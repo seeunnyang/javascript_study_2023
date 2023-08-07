@@ -55,5 +55,36 @@
         </ul>
         <button type="button" id="point_all_btn">전액사용</button>
     </div>
+    <script>
+        const user_point = document.querySelector('#user_point') //보유포인트
+        const use_point = document.querySelector('#use_point') //사용포인트
+        const point_reset = document.querySelector('#point_reset') //리셋버튼
+        const point_all_btn = document.querySelector('#point_all_btn') //전액사용버튼
+        console.log(user_point, point_reset, point_all_btn, user_point)
+        //1) 보유포인트에 1000원 대입하기
+        user_point.value = 1000
+        //2) x버튼 초기 숨기기(초기값은 0이므로 초기화할 수 없으므로 초반 숨기기)
+        point_reset.style.display = 'none'
+        //3-1) 전액 사용 버튼 클릭 시 보유포인트 전체값이 사용포인트로 전환되기
+        //5) 보유포인트가 1000원이상이면 사용포인트로 전환되고 1000원 이하면 1000원 이상 사용가능합니다. 팝업창 출력하기
+        point_all_btn.addEventListener('click',function(){
+            if(user_point.value >= 1000){
+                use_point.value = user_point.value
+                //3-2) 전환 후 보유포인트의 남은 값을 0으로 만들기
+                user_point.value = 0
+                //4) 사용포인트로 전환된 값이 1 이상일 시 x 버튼 활성화하기
+                point_reset.style.display = 'inline-block'
+            }else{
+                window.alert('1000원 이상 보유 시 사용가능합니다!')
+            }
+        }) //point_all_btn click event end
+        //6) x 버튼 클릭 시 사용포인트가 0원으로 초기화되고 x버튼 숨기기
+        //7) 사용포인트가 0원이 되면서 사용에 있던 포인트값이 다시 보유포인트로 복귀되게 만들기
+        point_reset.addEventListener('click',function(){
+            user_point.value = use_point.value
+            use_point.value = 0
+            point_reset.style.display = 'none'
+        })
+    </script>
 </body>
 </html>
