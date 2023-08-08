@@ -1,0 +1,112 @@
+main {
+    width:1200px; margin:0 auto; 
+    background:lightblue;
+}
+/* 공통 제목 CSS */
+main section {
+    text-align: center;
+}
+main section .category {
+    letter-spacing:-0.02em;
+}
+main section .category::after {
+    display:block; content: ''; background:#aaa;
+    height:2px; width:20px; margin:10px auto 0; 
+}
+main section h1 {
+    font-size:1.6rem;
+    letter-spacing:-0.02em;
+    padding:25px 0;
+}
+main section > .contents {
+    color:#777; font-weight:700;
+    letter-spacing:-0.02em;
+    margin-bottom:30px;
+}
+/* 카히스토리 영상 */
+/* 카히스토리 영상 - 탭 제목, 내용 */
+main #video .tab_title {}
+main #video .tab_title a {
+    background: lightgray;
+    padding:20px 40px; display:inline-block;
+}
+main #video .tab_title a.active {
+    border-bottom: 5px solid #189bfa;
+}
+main #video .tab_contents {margin: 20px auto;}
+main #video .tab_contents .tab_c1 {position:relative;}
+main #video .tab_contents .tab_c1 img {
+    width:200px;
+    position:absolute; top:225px; right:45px;
+}
+main #video .tab_contents .tab_c1 video {width:80%; margin:0 auto;}
+main #video .tab_contents .tab_c2 {}
+main #video .tab_contents .tab_c2 img {width:80%; margin:0 auto;}
+main #video .tab_contents .active {}
+/* 카히스토리 자주사용하는 메뉴 */
+main #menu .tab_title {
+    display:flex; 
+    justify-content:center;
+    border-bottom: 1px solid #888;
+}
+main #menu .tab_title a {
+    width:150px; padding:15px 0; margin-right:10px;
+    position:relative;  bottom:-1px;
+    border:1px solid #ccc; 
+    background:#fff; /*확인용색넣기*/
+    border-bottom:1px solid #888;
+    letter-spacing:-0.02em;
+}
+main #menu .tab_title a:last-child {margin-right: 0;}
+main #menu .tab_title a.active {
+    border:1px solid #888;
+    border-top:5px solid #189bfa;
+    border-bottom:1px solid #fff;
+}
+main #menu .tab_contents {margin:20px auto;}
+main #menu .tab_contents .tab_c1 {
+    display:flex; text-align:left;
+}
+main #menu .tab_contents .tab_c1 .left {width: 50%;}
+main #menu .tab_contents .tab_c1 .left h2 {
+    color: #189bfa;
+    font-size: 1.6rem; letter-spacing: -0.02em;
+    margin-bottom: 20px;
+}
+main #menu .tab_contents .tab_c1 .left p {
+    margin-bottom: 20px;
+    text-align: left; line-height: 1.7;
+}
+main #menu .tab_contents .tab_c1 .left p img {width:95%;}
+main #menu .tab_contents .tab_c1 .left p a {color:#189bfa;}
+main #menu .tab_contents .tab_c1 .right {width:50%;}
+main #menu .tab_contents .tab_c1 .right h3 {
+    font-size: 1.2rem; letter-spacing: -0.02em;
+    margin-bottom: 20px;
+}
+main #menu .tab_contents .tab_c1 .right ul {margin-top: 40px;}
+main #menu .tab_contents .tab_c1 .right ul li {
+    display:flex;
+    border-bottom: 1px dashed #aaa;
+    padding: 20px 0;
+}
+main #menu .tab_contents .tab_c1 .right ul li:last-child {border:0;}
+main #menu .tab_contents .tab_c1 .right ul li > p {}
+main #menu .tab_contents .tab_c1 .right ul li > p img {}
+main #menu .tab_contents .tab_c1 .right ul li > .contents {
+    padding-left:25px;
+}
+main #menu .tab_contents .tab_c1 .right ul li > .contents .num {
+    font-weight:700; color:#222;
+}
+main #menu .tab_contents .tab_c1 .right ul li > .contents .con {
+    padding-top:10px;
+}
+main #menu .tab_contents .tab_c1 .right ul li > .contents .con em {
+    color:#189bfa; font-size:1.3rem; 
+    font-weight:700; letter-spacing:-0.02em; 
+}
+main #menu .tab_contents .tab_c1 .right ul li > .contents .con span {}
+main #menu .tab_contents .tab_c2 {height:500px;} /*임시값*/
+main #menu .tab_contents .tab_c3 {height:500px;}
+main #menu .tab_contents .tab_c4 {height:500px;}
