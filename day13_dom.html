@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>day13_dom</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+            <p class="p">1</p>
+            <p class="p">2</p>
+            <p class="p">3</p>
+        </div>
+    </div>
+    <script>
+        //변수
+        const box1 = document.querySelector('#box1')
+        const box2 = document.querySelector('#box2')
+        const p = document.querySelectorAll('.p')
+        console.log(box1, box2, p)
+        //DOM 제어
+        //1. DOM생성 createElement()
+        const span = document.createElement('span')
+        span.innerHTML = '로그인이 실패했습니다.'
+        console.log(span)
+            //3번째 p 안에 span태그 삽입
+        p[2].appendChild(span)
+        //2. DOM 부모선택법 >> 자식.parentNode
+        console.log(p[0].parentNode)//첫번째p의 부모 = #box2
+        console.log(p[0].parentNode.parentNode)//첫번째p의 부모의 부모 = #box1
+        p[0].parentNode.style.backgroundColor = 'pink'//첫번째p의 부모style적용
+        //3. DOM 형제선택법
+        //이전형제 >> 기준대상.previousElementSibling
+        //다음형제 >> 기준대상.nextElementSibling
+        console.log(p[1].previousElementSibling) //2번째 p의 이전형제 = p1
+        console.log(p[1].nextElementSibling)//2번째 p의 다음형제 = p3
+        console.log(p[0].nextElementSibling.nextElementSibling) //첫번째 p의 다음, 다음 형제 = p3
+        p[0].nextElementSibling.style.color = 'white' //첫번째 p의 다음 형제 style적용
+        //4. DOM 자식선택법
+        //부모.childNodes 공백 포함 자식선택
+        //부모.children 요소만 인식
+        //부모.firstChild 첫번째 자식 인식(공백포함)
+        //부모.firstElementChild 첫번째 자식 인식(공백X)
+        //부모.lastChild 마지막 자식 인식(공백포함)
+        //부모.lastElementChild 마지막 자식 인식(공백X)
+        //여기서 공백은 엔터친것 등
+        console.log(box2.childNodes) //box2 자식들 모두 선택 = 공백+p*3
+        console.log(box2.children) //box2 자식들 모두 선택 = p*3
+        console.log(box2.firstElementChild) //box2 첫번째 자식 선택 = p1
+        console.log(box2.lastElementChild) //box2 마지막 자식 선택 = p3
+        box2.firstElementChild.style.border = '2px solid #000' //box2의 첫번째 자식 style적용
+        //children 모든 자식 p한테 글자 크기 2rem
+        // box2.children.style.fontSize = '2rem'
+        for(let i of box2.children){
+            i.style.fontSize = '2rem'
+        }
+    </script>
+</body>
+</html>
