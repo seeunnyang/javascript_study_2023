@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>day14_video_scroll_1</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <style>
+        main {
+            position:relative;
+            z-index:999; /* 위에 올리기 위해 자기자신 기준(position:relative;) 적용 후  (z-index) 적용하기*/
+        }
+        main h1, main h2 {
+            line-height:100vh;
+            text-align: center;
+            font-size:3.5rem;
+            color:#fff; font-weight:700;
+        }
+        main h2 {}
+        main h3 {
+            line-height:1.5;
+            text-align:center; padding:500px 0;
+            font-size:4rem; color:#fff; font-weight:700;
+        }
+        .container {
+            position:fixed; left:0; top:0;
+            width:100%;
+        }
+        .container img {width:100%;}
+    </style>
+</head>
+<body>
+    <!-- 스크롤과 함께 움직이는 컨텐츠 요소 -->
+    <main>
+        <h1>MacBook Air</h1>
+        <h2>15모델로 만나다</h2>
+        <h3>크게 펼치고,<br>얇게 접다.</h3>
+    </main>
+    <!-- 스크롤 동작에 따라 (고정)이미지 변경 요소 -->
+    <div class="container">
+        <img src="./video/1.jpg" alt="">
+    </div>
+
+    <script>
+        const imgElem = document.querySelector('.container img'); //이미지변경대상
+        const videoImages = [];
+        let totalImagesCount = 283; //이미지 총 개수
+        let progress;
+        let currentFrame;
+        function setImages() { //이미지 생성 함수 시작
+            for (let i = 1; i <= totalImagesCount; i++) {
+                let imgElem = document.createElement('img')
+                imgElem.src = `./video/${i}.jpg`; //이미지 경로
+                videoImages.push(imgElem);
+            }
+        }
+        function init() { //스크롤 동작 함수 시작
+            window.addEventListener('scroll', function () {
+                progress = pageYOffset / (document.body.offsetHeight - window.innerHeight);
+                currentFrame = Math.round((totalImagesCount - 1) * progress);
+                imgElem.src = videoImages[currentFrame].src;
+            });
+        }
+        window.addEventListener('load', init);
+        setImages();
+    </script>
+</body>
+</html>

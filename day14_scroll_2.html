@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>day14-scroll-2</title>
+    <style>
+        body, html {
+            height:300vh;
+            background:linear-gradient(pink, lightsalmon, lightyellow,lightgreen, lightblue);
+            /* 스크롤 제어 애니메이션 css(body선택자에 적용하기) */
+            scroll-behavior:smooth;
+        }
+        #pst {
+            position:fixed; left:50px; top:50px;
+            background:#eee; padding:20px;
+        }
+        #container section {
+            line-height:100vh; text-align:center;
+            border:5px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <section><h1>상품정보</h1></section>
+        <section><h1>리뷰</h1></section>
+        <section><h1>질문답변</h1></section>
+    </div>
+    <div id="pst">
+        <button class="tab" type="button">상품정보</button>
+        <button class="tab" type="button">리뷰</button>
+        <button class="tab" type="button">질문답변</button>
+    </div>
+    
+    <script>
+        // 자바스크립트의 스크롤 제어
+        const tabBtn = document.querySelectorAll('.tab')
+        const section = document.querySelectorAll('section')
+        console.log(tabBtn, section) //3, 3
+
+        //버튼 클릭 시 해당 section으로 이동하기
+        //리뷰버튼 클릭 시 리뷰section으로 이동하기
+        /* tabBtn[1].addEventListener('click',function(){
+            window.scrollTo(0, section[1].offsetTop)
+        }) */
+
+        //for문 위 이벤트 수정
+        tabBtn.forEach(function(t,i){
+            t.addEventListener('click',function(){
+                window.scrollTo(0, section[i].offsetTop)
+            })
+        })
+    </script>
+</body>
+</html>

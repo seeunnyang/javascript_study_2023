@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>day14-scroll-3</title>
+    <style>
+        body, html {
+            height:300vh;
+            background:linear-gradient(pink, lightsalmon, lightyellow,lightgreen, lightblue);
+            /* 스크롤 제어 애니메이션 css(body선택자에 적용하기) */
+            scroll-behavior:smooth;
+        }
+        #pst {
+            position:fixed; left:50px; top:50px;
+            background:#eee; padding:20px;
+        }
+        #container section {
+            line-height:100vh; text-align:center;
+            border:5px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <section><h1>상품정보</h1></section>
+        <section><h1>리뷰</h1></section>
+        <section><h1>질문답변</h1></section>
+    </div>
+    <div id="pst">
+        <button class="tab" type="button">상품정보</button>
+        <button class="tab" type="button">리뷰</button>
+        <button class="tab" type="button">질문답변</button>
+    </div>
+    
+    <script>
+        // 자바스크립트의 스크롤 제어
+        const tabBtn = document.querySelectorAll('.tab')
+        const section = document.querySelectorAll('section')
+        console.log(tabBtn, section) //3, 3
+
+        //pageYOffset 스크롤을 사용자가 얼만큼 움직였는지?
+        //클릭했을 때 실행 -> click event
+        //스크롤 했을 때 실행 -> scroll event (선행)
+
+        //1. tabBtn 초기 숨기기
+        //2. 300보다 스크롤값이 크면 tabBtn 보이기
+        //3. 300보다 스크롤값이 작으면 tabBtn 숨기기
+
+        //1. tabBtn 초기 숨기기
+        for(let i of tabBtn){i.style.display='none'}
+
+        window.addEventListener('scroll',function(){
+            console.log(window.pageYOffset)//현재 스크롤 이동 값 (픽셀단위)
+            
+            if(window.pageYOffset > section[1].offsetTop){
+            // if(window.pageYOffset > 300){
+                //2. 300보다 스크롤값이 크면 tabBtn 보이기
+                for(let i of tabBtn){i.style.display='inline-block'}
+            }else{
+                //3. 300보다 스크롤값이 작으면 tabBtn 숨기기
+                for(let i of tabBtn){i.style.display='none'}
+            }
+        })
+
+    </script>
+</body>
+</html>

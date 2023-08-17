@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>day14_scroll_4</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+        * {font-family: 'Noto Serif', serif;}
+        header {
+            position:fixed;
+            left:50px; top:50px;
+        }
+        header h1 {
+            font-size:2.5rem; font-weight:500;
+            margin-bottom:20px;
+        }
+        header nav {}
+        header nav a {padding:10px; display:inline-block;}
+        header nav a:hover {border-bottom:2px solid #000;}
+        aside {
+            position:fixed; top:400px; left:50px;
+        }
+        aside .bar {
+            margin-bottom:8px; display:block;
+            width:25px; height:2px; 
+            background:#000;
+            
+        }
+        aside .active {width:100px; background:#fff;} /* js classList 호출용*/
+        main {}
+        main .bg {
+            height:100vh; background-size:cover;
+            /* background-position:center; */
+        }
+        main .bg1 {background-image:url(./images/bg1.jpg);}
+        main .bg2 {background-image:url(./images/bg2.jpg);}
+        main .bg3 {background-image:url(./images/bg3.jpg);}
+        main .bg4 {background-image:url(./images/bg4.jpg);}
+
+        #mouse {
+            width:50px; height:50px;
+            border:5px solid #fff;
+            border-radius:50%;
+            /* 화면 최상단 스크롤 상관없이 고정 마우스 따라가는 CSS */
+            position:fixed; left:0; top:0; z-index:999;
+            transform: translate(-50%, -50%);
+            transition:all 0.2 linear; /* 단순히 고정되서 따라오는 것이 아닌 뒤늦게따라오는 느낌 */
+            /* 필수속성:마우스 따라다니는 이미지 만들경우 */
+            /* (위)링크, 버튼 등 선택이 안되는 문제 해결 */
+            pointer-events:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="mouse"></div>
+    <header>
+        <h1>Interior view</h1>
+        <nav>
+            <a href="#">A</a>
+            <a href="#">B</a>
+            <a href="#">C</a>
+            <a href="#">D</a>
+        </nav>
+    </header>
+    <aside>
+        <span class="bar active "></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </aside>
+    <main>
+        <div class="bg bg1"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+        <div class="bg bg4"></div>
+    </main>
+    <script>
+        //변수생성
+        const nav_a = document.querySelectorAll('nav a')
+        const bg = document.querySelectorAll('main .bg')
+        const bar = document.querySelectorAll('aside .bar')
+        console.log(nav_a, bg, bar)
+        //a 클릭 시 해당 bg로 이동하기 (forEach문)
+        nav_a.forEach(function(t,i){
+            t.addEventListener('click',function(e){
+                e.preventDefault() //a href 기능막기
+                window.scrollTo(0, bg[i].offsetTop)
+            })
+        })
+        //스크롤이 해당 bg에 있을 때 해당bar 스타일 적용
+        const body = document.querySelector('body,html')
+        window.addEventListener('scroll',function(){
+            // console.log('body.scrollTop>>',body.scrollTop) //확인용
+            bar.forEach(function(t,i){
+                if(body.scrollTop >= bg[i].offsetTop){
+                    for(let j of bar){j.classList.remove('active')}//모두 제거 먼저 적용 후
+                    t.classList.add('active') //해당대상만 적용하기
+                }
+            })
+        })
+
+        // 마우스 움질일 때 이벤트
+        const mouseImg = document.querySelector('#mouse')
+        console.log(mouseImg)
+        window.addEventListener('mousemove',function(e){
+            // console.log(e)
+            mouseImg.style.left = `${e.clientX}px` //~벤틱기호
+            mouseImg.style.top = `${e.clientY}px` //~벤틱기호
+        })
+    </script>
+</body>
+</html>
